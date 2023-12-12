@@ -1,0 +1,48 @@
+﻿@model WebQLNS.Models.ChuyenVien
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ChuyenVien</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaChuyenVien)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaChuyenVien)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TenChuyenVien)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenChuyenVien)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ChuyenMon)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ChuyenMon)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KinhNghiem)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KinhNghiem)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhongBan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhongBan.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,35 @@
+﻿@model PhongBan
+
+<h2>Test</h2>
+
+<p>Số lượng người làm việc trong phòng ban: @Model.NhanViens.Count</p>
+
+@if (Model.NhanViens.Count > 0)
+{
+    <h3>Danh sách nhân viên:</h3>
+    <ul>
+        @foreach (var nhanVien in Model.NhanViens)
+        {
+            <li><a href="@Url.Action("Details", "NhanVien", new { id = nhanVien.MaNhanVien })">@nhanVien.TenNhanVien</a></li>
+        }
+    </ul>
+}
+else
+{
+    <p>Không có nhân viên nào làm việc trong phòng ban này.</p>
+}
+
+@if (ViewBag.ChuyenViens != null)
+{
+    <h3>Danh sách chuyên viên:</h3>
+    <ul>
+        @foreach (var chuyenVien in ViewBag.ChuyenViens)
+        {
+            <li><a href="@Url.Action("Details", "ChuyenVien", new { id = chuyenVien.Id })">@chuyenVien.TenChuyenVien</a></li>
+        }
+    </ul>
+}
+else
+{
+    <p>Không có chuyên viên nào trong phòng ban này.</p>
+}

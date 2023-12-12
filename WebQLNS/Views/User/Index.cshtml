@@ -1,0 +1,52 @@
+﻿@{
+    var users = ViewData["Users"] as List<Users>;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã ID
+            </th>
+            <th>
+                Tên User
+            </th>
+            <th>
+                Mật Khẩu
+            </th>
+            <th>
+                Role
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Role.RoleName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@user.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@user.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

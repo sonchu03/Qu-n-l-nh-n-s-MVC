@@ -1,0 +1,40 @@
+﻿@{
+    var allAttendances = ViewBag.AllAttendances as List<Attendance>;
+    var users = ViewBag.Users as List<Users>;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User Name</th>
+            <th>CheckInTime</th>
+            <th>CheckOutTime</th>
+            <th>Duration</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var attendance in allAttendances)
+        {
+            var user = users.FirstOrDefault(u => u.UserId == attendance.UserId);
+            <tr>
+                <td>@attendance.Id</td>
+                <td>@(user != null ? user.Username : "")</td>
+                <td>@attendance.CheckInTime</td>
+                <td>@attendance.CheckOutTime</td>
+                <td>
+                    @{
+                        double durationInHours = (attendance.CheckOutTime - attendance.CheckInTime).TotalHours;
+                        TimeSpan duration = TimeSpan.FromHours(durationInHours);
+                        string formattedDuration = $"{duration.Hours} hours {duration.Minutes} minutes";
+                    }
+                    <span>@formattedDuration</span>
+                </td>
+                <td>
+                    <a asp-action="DeleteAttendance" asp-route-id="@attendance.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
