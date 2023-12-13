@@ -1,0 +1,29 @@
+﻿@model List<WebQLNS.Models.NhanVien>
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salary Report</title>
+</head>
+<body>
+    <h2>Báo cáo lương</h2>
+
+    <table>
+        <tr>
+            <th>Mã Nhân viên</th>
+            <th>Tên Nhân viên</th>
+            <th>Lương</th>
+        </tr>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.MaNhanVien</td>
+                <td>@employee.TenNhanVien</td>
+                <td>@employee.Luong</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

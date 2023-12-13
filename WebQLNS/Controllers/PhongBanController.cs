@@ -21,7 +21,12 @@ namespace WebQLNS.Controllers
         // GET: PhongBan
         public async Task<IActionResult> Index()
         {
-              return _context.PhongBans != null ? 
+            string username = HttpContext.Session.GetString("Username");
+            string roleName = HttpContext.Session.GetString("RoleName");
+            // Truyền tên tài khoản vào ViewBag
+            ViewBag.Username = username;
+            ViewBag.RoleName = roleName;
+            return _context.PhongBans != null ? 
                           View(await _context.PhongBans.ToListAsync()) :
                           Problem("Entity set 'AppDbContext.PhongBans'  is null.");
         }
@@ -116,8 +121,7 @@ namespace WebQLNS.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
                     _context.Update(phongBan);
@@ -133,7 +137,6 @@ namespace WebQLNS.Controllers
                     {
                         throw;
                     }
-                }
                 return RedirectToAction(nameof(Index));
             }
             return View(phongBan);

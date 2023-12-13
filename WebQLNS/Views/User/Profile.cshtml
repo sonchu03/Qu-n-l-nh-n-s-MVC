@@ -1,0 +1,39 @@
+﻿@model WebQLNS.Models.ProfileViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Thông tin Nhân viên</h2>
+
+    <table>
+        <tr>
+            <th>Mã Nhân viên</th>
+            <td>@Model.NhanVien.MaNhanVien</td>
+        </tr>
+        <tr>
+            <th>Tên Nhân viên</th>
+            <td>@Model.NhanVien.TenNhanVien</td>
+        </tr>
+        <tr>
+            <th>Ngày Sinh</th>
+            <td>@Model.NhanVien.NgaySinh</td>
+        </tr>
+        <tr>
+            <th>Giới Tính</th>
+            <td>@Model.NhanVien.GioiTinh</td>
+        </tr>
+        <tr>
+            <th>Lương</th>
+            <td>@Model.NhanVien.Luong</td>
+        </tr>
+        <tr>
+            <th>Tên Phòng Ban</th>
+            <td>@Model.NhanVien.PhongBan.TenPhongBan</td>
+        </tr>
+    </table>
+
+</body>
+</html>

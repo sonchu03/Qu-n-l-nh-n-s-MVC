@@ -24,5 +24,7 @@ namespace WebQLNS.Controllers
         public DbSet<Users> Users { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<Reward> Rewards { get; set; }
+        public DbSet<Penalty> Penalty { get; set; }
     }
 }

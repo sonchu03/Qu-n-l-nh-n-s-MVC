@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebQLNS.Models.NhanVien>
+
+<h2>Employee List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Rewards</th>
+            <th>Penalties</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.MaNhanVien</td>
+                <td>@employee.TenNhanVien</td>
+                <td>
+                    @foreach (var reward in employee.Rewards)
+                    {
+                        <div>@reward.Description</div>
+                    }
+                </td>
+                <td>
+                    @foreach (var penalty in employee.Penalties)
+                    {
+                        <div>@penalty.Description</div>
+                    }
+                </td>
+                <td>
+                        <a href="@Url.Action("AddReward", new { MaNhanVien = employee.MaNhanVien })">Add Reward</a>
+                        <a href="@Url.Action("AddPenalty", new { MaNhanVien = employee.MaNhanVien })">Add Penalty</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

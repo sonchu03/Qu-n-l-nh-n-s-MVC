@@ -1,0 +1,26 @@
+﻿@model WebQLNS.Models.Reward
+
+<h2>Add Reward</h2>
+
+<p>Current employee ID: @ViewBag.MaNhanVien</p>
+
+<form asp-action="AddReward">
+    <input type="hidden" name="MaNhanVien" value="@ViewBag.MaNhanVien" />
+
+    <div class="form-group">
+        <label>Description:</label>
+        <input class="form-control" asp-for="Description" />
+    </div>
+
+    <div class="form-group">
+        <label>Date:</label>
+        <input class="form-control" asp-for="Date" />
+    </div>
+
+    <div class="form-group">
+        <label>Amount:</label>
+        <input class="form-control" asp-for="Amount" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Reward</button>
+</form>

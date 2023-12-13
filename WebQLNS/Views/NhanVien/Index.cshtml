@@ -36,9 +36,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TenNhanVien)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySinh)
-            </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgaySinh)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GioiTinh)
             </td>
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Luong)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PhongBan.Id)
+                @Html.DisplayFor(modelItem => item.PhongBan.TenPhongBan)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MaNhanVien">Edit</a> |

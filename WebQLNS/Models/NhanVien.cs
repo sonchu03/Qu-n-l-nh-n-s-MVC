@@ -16,6 +16,8 @@ namespace WebQLNS.Models
         public int MaPhongBan { get; set; }
         public PhongBan PhongBan { get; set; }
 
+        public ICollection<Reward> Rewards { get; set; }
+        public ICollection<Penalty> Penalties { get; set; }
 
     }
 }

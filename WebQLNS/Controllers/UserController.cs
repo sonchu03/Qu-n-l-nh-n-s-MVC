@@ -28,6 +28,11 @@ namespace WebQLNS.Controllers
             var users = await _context.Users.Include(u => u.Role).ToListAsync();
 
             ViewData["Users"] = users;
+            string username = HttpContext.Session.GetString("Username");
+            string roleName = HttpContext.Session.GetString("RoleName");
+            // Truyền tên tài khoản vào ViewBag
+            ViewBag.Username = username;
+            ViewBag.RoleName = roleName;
 
             return View();
         }
@@ -149,6 +154,11 @@ namespace WebQLNS.Controllers
         }
         public IActionResult GetAllAttendance()
         {
+            string username = HttpContext.Session.GetString("Username");
+            string roleName = HttpContext.Session.GetString("RoleName");
+            // Truyền tên tài khoản vào ViewBag
+            ViewBag.Username = username;
+            ViewBag.RoleName = roleName;
             var allAttendances = _context.Attendances.ToList();
             var userIds = allAttendances.Select(a => a.UserId).Distinct().ToList();
             var users = _context.Users.Where(u => userIds.Contains(u.UserId)).ToList();
@@ -200,8 +210,36 @@ namespace WebQLNS.Controllers
 
             return View();
         }
+        public IActionResult Profile()
+        {
+            if (HttpContext.Session.GetInt32("UserId") != null)
+            {
+                // Lấy thông tin từ session
+                int userId = HttpContext.Session.GetInt32("UserId").Value;
 
-        public async Task<IActionResult> Details(int? id)
+                // Lấy thông tin người dùng từ cơ sở dữ liệu
+                var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+                var nhanVien = _context.NhanViens
+                    .Include(nv => nv.PhongBan)  // Eager loading thông tin PhongBan
+                    .FirstOrDefault(nv => nv.MaNhanVien == userId);
+
+                if (user != null && nhanVien != null)
+                {
+                    // Tạo đối tượng ViewModel
+                    var viewModel = new ProfileViewModel
+                    {
+                        User = user,
+                        NhanVien = nhanVien
+                    };
+
+                    // Truyền thông tin ViewModel đến view
+                    return View(viewModel);
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Users == null)
             {

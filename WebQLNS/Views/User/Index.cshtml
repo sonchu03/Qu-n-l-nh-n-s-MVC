@@ -11,9 +11,6 @@
     <thead>
         <tr>
             <th>
-                Mã ID
-            </th>
-            <th>
                 Tên User
             </th>
             <th>
@@ -29,9 +26,6 @@
         @foreach (var user in users)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => user.UserId)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => user.Username)
                 </td>

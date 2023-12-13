@@ -10,7 +10,6 @@ namespace WebQLNS.Controllers
     public class HomeController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly ILogger<HomeController> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private ISession _session => _httpContextAccessor.HttpContext.Session;
 

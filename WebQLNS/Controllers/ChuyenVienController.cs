@@ -21,7 +21,11 @@ namespace WebQLNS.Controllers
         // GET: ChuyenVien
         public async Task<IActionResult> Index()
         {
-            return View();
+            string username = HttpContext.Session.GetString("Username");
+            string roleName = HttpContext.Session.GetString("RoleName");
+            // Truyền tên tài khoản vào ViewBag
+            ViewBag.Username = username;
+            ViewBag.RoleName = roleName;
             var appDbContext = _context.ChuyenViens.Include(c => c.PhongBan);
             return View(await appDbContext.ToListAsync());
         }

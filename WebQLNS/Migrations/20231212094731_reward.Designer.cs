@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebQLNS.Controllers;
 
@@ -11,9 +12,11 @@ using WebQLNS.Controllers;
 namespace WebQLNS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231212094731_reward")]
+    partial class reward
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,12 +129,12 @@ namespace WebQLNS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaNhanVien")
+                    b.Property<int>("NhanVienId")
                         .HasColumnType("int");
 
                     b.HasKey("PenaltyId");
 
-                    b.HasIndex("MaNhanVien");
+                    b.HasIndex("NhanVienId");
 
                     b.ToTable("Penalty");
                 });
@@ -182,12 +185,12 @@ namespace WebQLNS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaNhanVien")
+                    b.Property<int>("NhanVienId")
                         .HasColumnType("int");
 
                     b.HasKey("RewardId");
 
-                    b.HasIndex("MaNhanVien");
+                    b.HasIndex("NhanVienId");
 
                     b.ToTable("Rewards");
                 });
@@ -264,7 +267,7 @@ namespace WebQLNS.Migrations
                 {
                     b.HasOne("WebQLNS.Models.NhanVien", "NhanVien")
                         .WithMany("Penalties")
-                        .HasForeignKey("MaNhanVien")
+                        .HasForeignKey("NhanVienId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -275,7 +278,7 @@ namespace WebQLNS.Migrations
                 {
                     b.HasOne("WebQLNS.Models.NhanVien", "NhanVien")
                         .WithMany("Rewards")
-                        .HasForeignKey("MaNhanVien")
+                        .HasForeignKey("NhanVienId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
